@@ -1,0 +1,29 @@
+{
+  "name": "unsplash-devcenter",
+  "description": "Unsplash Photo Viewer",
+  "author": "Victor Ikoro",
+  "dependencies": {
+    "angular-ui-grid": "^3.2.6",
+    "angular": "^1.5.8",
+    "angular-ui-router": "^0.3.1",
+    "ng-table": "^1.0.0",
+    "angular-material": "^1.1.1",
+    "angular-sanitize": "^1.5.8",
+    "angular-loading-bar": "^0.9.0",
+    "angular-material-data-table": "^0.10.9",
+    "angular-aria": "^1.5.8",
+    "angular-animate": "^1.5.8",
+    "angular-messages": "^1.5.8",
+    "grunt": "0.x.x",
+    "grunt-contrib-clean": "0.4.x",
+    "grunt-contrib-concat": "1.0.0",
+    "grunt-contrib-copy": "0.4.x",
+    "grunt-contrib-csslint": "*",
+    "grunt-contrib-cssmin": "0.12.2",
+    "grunt-contrib-jasmine": "^0.9.2",
+    "grunt-contrib-jshint": "0.7.x",
+    "grunt-contrib-uglify": "0.2.x",
+    "grunt-template-jasmine-istanbul": "0.4.x"
+  },
+  "engine": "node >= 0.10"
+}
