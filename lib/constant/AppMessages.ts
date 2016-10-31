@@ -5,7 +5,7 @@
  */
 
 
-module RBPApp
+module UPV
 {
     export class AppMessages
     {

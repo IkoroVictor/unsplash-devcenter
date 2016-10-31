@@ -5,8 +5,7 @@
 
 /// <reference path="../typings/angularjs/angular.d.ts" />
 /// <reference path="constant/AppConstants.ts" />
-module RBPApp
+module UPV
 {
-    angular.module(AppConstants.APP_NAME, [ 'ngMaterial','ngMessages', "md.data.table","angular-loading-bar",
-        "ui.router", "ngSanitize"])
+    angular.module(AppConstants.APP_NAME, [ 'ngMaterial','ngMessages',"angular-loading-bar", "ngSanitize"])
 }
