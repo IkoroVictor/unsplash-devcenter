@@ -5,6 +5,9 @@
  */
 
 /// <reference path="../service/PhotoService.ts" />
+/// <reference path="../constant/AppConstants.ts" />
+/// <reference path="../constant/AppMessages.ts" />
+/// <reference path="../../typings/angular-material/angular-material.d.ts" />
 
 module UPV
 {
