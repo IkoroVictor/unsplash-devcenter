@@ -4,11 +4,11 @@
  */
 
 
-module RBPApp
+module UPV
 {
     export class AppConstants
     {
-        public static APP_NAME:string = "RBPApp";
+        public static APP_NAME:string = "UPV";
 
         public static DEFAULT_PAGE_SIZE:number  = 10;
         public static DEFAULT_PAGE_NUMBER:number =  1;
@@ -16,7 +16,10 @@ module RBPApp
 
 
         //EVENTS
-        public  static  EVENT_NETWORK_ERROR:string = "RBP_NETWORK_ERROR";
-        public  static  EVENT_USER_DETAILS:string = "RBP_USER_DETAILS";
+        public  static  EVENT_NETWORK_ERROR:string = "NETWORK_ERROR";
+
+        //APP ID
+        //NOTE 
+        public static APP_ID:string = '7fb9a64eca3db37234089c874dc654b335c58c25a6aec2284bf67ca37d4cc7d8'
     }
 }

@@ -5,20 +5,27 @@
  */
 
 /// <reference path="../service/PhotoService.ts" />
+/// <reference path="../constant/AppConstants.ts" />
+/// <reference path="../constant/AppMessages.ts" />
+/// <reference path="../../typings/angular-material/angular-material.d.ts" />
 
 module UPV
 {
     export class GridPageController
     {
-        static  $inject = ['PhotoService']
+        static  $inject = ['PhotoService', '$scope', 'mdDialog'];
 
         private _photoService:PhotoService;
         public params:any;
+        public scope:ng.IScope;
+        public mdDialogService:any;
         private photos:Array<any>;
 
-        constructor(photoService:PhotoService)
+        constructor(photoService:PhotoService, scope:ng.IScope, mdDialogService:ng.material.IDialogService)
         {
             this._photoService = photoService;
+            this.mdDialogService = mdDialogService;
+            this.scope =  scope;
             this.photos = [];
             this.params =  {
                 page: AppConstants.DEFAULT_PAGE_NUMBER,
@@ -50,6 +57,27 @@ module UPV
                     this.photos.push(value);
                 });
             }
+        }
+
+        public showPhoto(event:any, index:number)
+        {
+            this.mdDialogService.show({
+                clickOutsideToClose: true,
+                controller: function($scope, photo, controller)
+                {
+                    $scope.photo = photo;
+                    $scope.controller =  controller;
+                },
+                controllerAs: 'ctrl',
+                focusOnOpen: false,
+                targetEvent: event,
+                locals :
+                {
+                    photo : this.photos[index],
+                    controller: this
+                },
+                templateUrl: URLPaths.VIEW_PHOTO_DIALOG_TEMPLATE_PAGE,
+            }).then();
         }
 
         private handleHttpErrors(error:any) : void
