@@ -15,6 +15,9 @@ module UPV
     {
         static  $inject = ['PhotoService', '$scope', 'mdDialog'];
 
+
+        public static NAME:string = "GridPageController";
+
         private _photoService:PhotoService;
         public params:any;
         public scope:ng.IScope;
