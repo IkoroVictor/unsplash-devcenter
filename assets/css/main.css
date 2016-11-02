@@ -1,0 +1,9 @@
+.photo-div
+{
+    max-width: 60%;
+    margin: 5% 20%;
+}
+.user-avatar
+{
+    border-radius: 200px;
+}

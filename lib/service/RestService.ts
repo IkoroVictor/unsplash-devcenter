@@ -7,6 +7,7 @@
 
 
 /// <reference path="../../typings/angularjs/angular.d.ts" />
+/// <reference path="../constant/AppConstants.ts" />
 
 
 module UPV
@@ -57,4 +58,5 @@ module UPV
             }
         }
     }
+    angular.module(AppConstants.APP_NAME).service(RestService.NAME, RestService);
 }

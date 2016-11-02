@@ -13,7 +13,7 @@ module UPV
 {
     export class GridPageController
     {
-        static  $inject = ['PhotoService', '$scope', 'mdDialog'];
+        static  $inject = ['PhotoService', '$scope', '$mdDialog'];
 
 
         public static NAME:string = "GridPageController";
@@ -44,6 +44,7 @@ module UPV
             this._photoService.getPhotos(this.params).then(
                 (result) => {
                     this.populateGrid(result);
+
                 },
                 (error) => {
                     this.handleHttpErrors(error);
@@ -53,9 +54,10 @@ module UPV
 
         private populateGrid(result:any) : void
         {
+            console.log(result);
             if(result && result.hasOwnProperty("data"))
             {
-                result.data.forEach(function(value)
+                result.data.forEach((value) =>
                 {
                     this.photos.push(value);
                 });
@@ -89,5 +91,8 @@ module UPV
             this.scope.$emit(AppConstants.EVENT_NETWORK_ERROR, `${AppMessages.PHOTOS_NETWORK_ERROR_MSG} (${error.status})`);
         }
     }
+    angular
+        .module(AppConstants.APP_NAME)
+        .controller(GridPageController.NAME, GridPageController);
 }
 

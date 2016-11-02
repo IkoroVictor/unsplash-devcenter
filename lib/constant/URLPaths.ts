@@ -16,6 +16,6 @@ module UPV
         public static ERROR_DIALOG_TEMPLATE_PAGE = `templates/dialogs/view-photo.html`;
 
         //API Endpoints
-        public static API_PHOTOS:string = `${URLPaths.BASE_API_PATH}/photos`;
+        public static API_PHOTOS:string = `${URLPaths.BASE_API_PATH}photos`;
     }
 }
