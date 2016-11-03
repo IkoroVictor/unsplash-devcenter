@@ -5,21 +5,22 @@
     <title></title>
 </head>
 <body>
-<div ng-controller="GridPageController as gridCtrl"  ng-cloak>
+<div ng-controller="GridPageController as gridCtrl"  ng-cloak scroll-bottom="gridCtrl.loadMorePhotos()">
 
     <div data-ng-repeat="photo in gridCtrl.photos" align="center" class="photo-div">
         <md-card>
+            <md-card-actions layout="row" layout-align="begin center">
+                <img ng-src="{{photo.user.profile_image.medium}}" class="md-avatar user-avatar" />
+                <h4 class="user-name"><a  class="md-title" target="_blank" ng-href="{{photo.user.portfolio_url}}">{{photo.user.name}}</a></h4>
+            </md-card-actions>
             <img ng-src="{{photo.urls.regular}}" class="md-card-image" alt="Washed Out">
             <md-card-actions layout="row" layout-align="end center">
-                <img ng-src="{{photo.user.profile_image.medium}}" class="md-avatar user-avatar" />
-                <md-button class="md-icon-button" aria-label="Favorite">
-                    <md-icon md-svg-icon="img/icons/favorite.svg"></md-icon>
+                <md-button class="md-icon-button md-accent" aria-label="Favorite">
+                    <i class="material-icons">favorite</i>
                 </md-button>
-                <md-button class="md-icon-button" aria-label="Settings">
-                    <md-icon md-svg-icon="img/icons/menu.svg"></md-icon>
-                </md-button>
-                <md-button class="md-icon-button" aria-label="Share">
-                    <md-icon md-svg-icon="img/icons/share-arrow.svg"></md-icon>
+                <label class="md-title">{{photo.likes}}</label>
+                <md-button class="md-icon-button md-primary" target="_blank" download ng-href="{{photo.links.download}}" aria-label="Settings">
+                    <i class="material-icons">cloud_download</i>
                 </md-button>
             </md-card-actions>
         </md-card>

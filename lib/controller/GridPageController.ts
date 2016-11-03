@@ -51,6 +51,11 @@ module UPV
                 }
             );
         }
+        public  loadMorePhotos() : void
+        {
+            this.params.page += 1;
+            this.loadPhotos();
+        }
 
         private populateGrid(result:any) : void
         {
