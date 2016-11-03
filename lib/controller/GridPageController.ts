@@ -57,6 +57,12 @@ module UPV
             this.loadPhotos();
         }
 
+        public changeOrder()  : void
+        {
+            this.photos = [];
+            this.loadPhotos();
+        }
+
         private populateGrid(result:any) : void
         {
             console.log(result);

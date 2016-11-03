@@ -23,8 +23,8 @@ module UPV
             link: function (scope, element, attrs) {
                 var raw = element[0];
                 console.log('loading directive');
-                element.bind('scroll', function () {
-                    console.log('scroll');
+                element.on('scroll', function () {
+                    console.log(raw);
                     if (raw.scrollTop + raw.offsetHeight > raw.scrollHeight) {
                         scope.$apply(attrs['scroll-bottom']);
                     }

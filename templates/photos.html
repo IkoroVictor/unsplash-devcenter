@@ -7,6 +7,17 @@
 <body>
 <div ng-controller="GridPageController as gridCtrl"  ng-cloak scroll-bottom="gridCtrl.loadMorePhotos()">
 
+    <div layout="row" class="filter-div" layout-align="end center">
+        <md-input-container  class="select-filter">
+            <label>Order</label>
+            <md-select ng-model="gridCtrl.params.order_by" ng-change="gridCtrl.changeOrder()">
+                <md-option value="latest"><em>Latest</em></md-option>
+                <md-option value="popular"><em>Popular</em></md-option>
+                <md-option value="oldest"><em>Oldest</em></md-option>
+            </md-select>
+        </md-input-container>
+    </div>
+
     <div data-ng-repeat="photo in gridCtrl.photos" align="center" class="photo-div">
         <md-card>
             <md-card-actions layout="row" layout-align="begin center">

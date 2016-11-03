@@ -10,6 +10,6 @@ module UPV
     export class AppMessages
     {
         //ERROR MESSAGES
-        public static PHOTOS_NETWORK_ERROR_MSG:string = "Could not load photos.";
+        public static PHOTOS_NETWORK_ERROR_MSG:string = "Could not load Unsplash photos.";
     }
 }
