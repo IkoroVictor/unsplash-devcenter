@@ -7,5 +7,5 @@
 /// <reference path="constant/AppConstants.ts" />
 module UPV
 {
-    angular.module(AppConstants.APP_NAME, [ 'ngMaterial','ngMessages',"angular-loading-bar", "ngSanitize"])
+    angular.module(AppConstants.APP_NAME, [ 'ngMaterial','ngMessages',"angular-loading-bar","ui.router", "ngSanitize"])
 }

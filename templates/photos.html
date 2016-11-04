@@ -5,22 +5,42 @@
     <title></title>
 </head>
 <body>
-<div ng-controller="GridPageController as gridCtrl" flex ng-cloak>
-    <md-grid-list
-            md-cols="1" md-cols-sm="2" md-cols-md="3" md-cols-gt-md="6"
-            md-row-height-gt-md="1:1" md-row-height="4:3"
-            md-gutter="8px" md-gutter-gt-sm="4px" >
+<div ng-controller="GridPageController as gridCtrl"  ng-cloak scroll-bottom="gridCtrl.loadMorePhotos()">
 
-        <md-grid-tile ng-repeat="photo in gridCtrl.photos"
-                      md-rowspan="{{photo.span.row}}"
-                      md-colspan="{{photo.span.col}}"
-                      md-colspan-sm="1"
-                      md-colspan-xs="1"
-                      ng-class="photo.background" >
-            <md-icon md-svg-icon="{{photo.icon}}"></md-icon>
-            <md-grid-tile-footer><h3>{{photo.title}}</h3></md-grid-tile-footer>
-        </md-grid-tile>
-    </md-grid-list>
+    <div layout="row" class="filter-div" layout-align="end center">
+        <md-input-container  class="select-filter">
+            <label>Order</label>
+            <md-select ng-model="gridCtrl.params.order_by" ng-change="gridCtrl.refresh()">
+                <md-option value="latest"><em>Latest</em></md-option>
+                <md-option value="popular"><em>Popular</em></md-option>
+                <md-option value="oldest"><em>Oldest</em></md-option>
+            </md-select>
+        </md-input-container>
+    </div>
+
+    <div data-ng-repeat="photo in gridCtrl.photos" align="center" class="photo-div">
+        <md-card>
+            <md-card-actions layout="row" layout-align="begin center">
+                <img ng-src="{{photo.user.profile_image.medium}}" class="md-avatar user-avatar" />
+                <h4 class="user-name"><a  class="md-title" target="_blank" ng-href="{{photo.user.portfolio_url}}">{{photo.user.name}}</a></h4>
+            </md-card-actions>
+            <img ng-src="{{photo.urls.regular}}" class="md-card-image" alt="Washed Out">
+            <md-card-actions layout="row" layout-align="end center">
+                <md-button class="md-icon-button md-accent" aria-label="Favorite">
+                    <i class="material-icons">favorite</i>
+                </md-button>
+                <label class="md-title">{{photo.likes}}</label>
+                <md-button class="md-icon-button md-primary" aria-label="Time">
+                    <i class="material-icons">schedule</i>
+                </md-button>
+                <label class="md-title">{{gridCtrl.getFormattedPhotoDate(photo.created_at)}}</label>
+                <md-button class="md-icon-button md-primary" target="_blank" download ng-href="{{photo.links.download}}" aria-label="Settings">
+                    <i class="material-icons">cloud_download</i>
+                </md-button>
+            </md-card-actions>
+        </md-card>
+    </div>
+
 </div>
 </body>
 </html>

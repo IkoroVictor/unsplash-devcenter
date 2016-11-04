@@ -7,13 +7,17 @@
 /// <reference path="../service/PhotoService.ts" />
 /// <reference path="../constant/AppConstants.ts" />
 /// <reference path="../constant/AppMessages.ts" />
+/// <reference path="../helper/MiscHelper.ts" />
 /// <reference path="../../typings/angular-material/angular-material.d.ts" />
 
 module UPV
 {
     export class GridPageController
     {
-        static  $inject = ['PhotoService', '$scope', 'mdDialog'];
+        static  $inject = ['PhotoService', '$scope', '$mdDialog'];
+
+
+        public static NAME:string = "GridPageController";
 
         private _photoService:PhotoService;
         public params:any;
@@ -26,13 +30,13 @@ module UPV
             this._photoService = photoService;
             this.mdDialogService = mdDialogService;
             this.scope =  scope;
+            this.scope.$on(AppConstants.EVENT_SCROLL_BOTTOM, (event) => { this.loadMorePhotos();})
             this.photos = [];
             this.params =  {
                 page: AppConstants.DEFAULT_PAGE_NUMBER,
                 per_page : AppConstants.DEFAULT_PAGE_SIZE,
                 order_by : AppConstants.DEFAULT_PAGE_ORDER,
             };
-
             this.loadPhotos();
         }
 
@@ -41,43 +45,40 @@ module UPV
             this._photoService.getPhotos(this.params).then(
                 (result) => {
                     this.populateGrid(result);
+
                 },
                 (error) => {
                     this.handleHttpErrors(error);
                 }
             );
         }
+        public  loadMorePhotos() : void
+        {
+            this.params.page += 1;
+            this.loadPhotos();
+        }
+
+        public refresh()  : void
+        {
+            this.photos = [];
+            this.loadPhotos();
+        }
+
+        public getFormattedPhotoDate(date:string) : string
+        {
+            return MiscHelper.formatPhotoDate(new Date(Date.parse(date)));
+        }
 
         private populateGrid(result:any) : void
         {
+            console.log(result);
             if(result && result.hasOwnProperty("data"))
             {
-                result.data.forEach(function(value)
+                result.data.forEach((value) =>
                 {
                     this.photos.push(value);
                 });
             }
-        }
-
-        public showPhoto(event:any, index:number)
-        {
-            this.mdDialogService.show({
-                clickOutsideToClose: true,
-                controller: function($scope, photo, controller)
-                {
-                    $scope.photo = photo;
-                    $scope.controller =  controller;
-                },
-                controllerAs: 'ctrl',
-                focusOnOpen: false,
-                targetEvent: event,
-                locals :
-                {
-                    photo : this.photos[index],
-                    controller: this
-                },
-                templateUrl: URLPaths.VIEW_PHOTO_DIALOG_TEMPLATE_PAGE,
-            }).then();
         }
 
         private handleHttpErrors(error:any) : void
@@ -86,5 +87,8 @@ module UPV
             this.scope.$emit(AppConstants.EVENT_NETWORK_ERROR, `${AppMessages.PHOTOS_NETWORK_ERROR_MSG} (${error.status})`);
         }
     }
+    angular
+        .module(AppConstants.APP_NAME)
+        .controller(GridPageController.NAME, GridPageController);
 }
 

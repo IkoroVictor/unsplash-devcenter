@@ -29,7 +29,8 @@ module.exports = function (grunt) {
                     'dist/css/application.css' : [
                         'node_modules/angular-material/angular-material.min.css',
                         'node_modules/angular-loading-bar/build/loading-bar.min.css',
-                        'assets/css/min/css/main.min.css']
+                        'assets/css/min/css/main.min.css',
+                        'assets/css/min/css/material-icons.min.css']
                 }
             }
         },

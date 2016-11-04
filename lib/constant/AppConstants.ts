@@ -15,8 +15,12 @@ module UPV
         public static DEFAULT_PAGE_ORDER:string =  'latest';
 
 
+        public static SCROLL_OFFSET_DIFF_RATIO:number  = 9;
+
+
         //EVENTS
         public  static  EVENT_NETWORK_ERROR:string = "NETWORK_ERROR";
+        public  static  EVENT_SCROLL_BOTTOM:string = "SCROLL_BOTTOM";
 
         //APP ID
         //NOTE 
