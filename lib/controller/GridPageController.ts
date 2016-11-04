@@ -7,6 +7,7 @@
 /// <reference path="../service/PhotoService.ts" />
 /// <reference path="../constant/AppConstants.ts" />
 /// <reference path="../constant/AppMessages.ts" />
+/// <reference path="../helper/MiscHelper.ts" />
 /// <reference path="../../typings/angular-material/angular-material.d.ts" />
 
 module UPV
@@ -61,6 +62,11 @@ module UPV
         {
             this.photos = [];
             this.loadPhotos();
+        }
+
+        public getFormattedPhotoDate(date:string) : string
+        {
+            return MiscHelper.formatPhotoDate(new Date(Date.parse(date)));
         }
 
         private populateGrid(result:any) : void

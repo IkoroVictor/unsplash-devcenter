@@ -30,6 +30,10 @@
                     <i class="material-icons">favorite</i>
                 </md-button>
                 <label class="md-title">{{photo.likes}}</label>
+                <md-button class="md-icon-button md-primary" aria-label="Time">
+                    <i class="material-icons">schedule</i>
+                </md-button>
+                <label class="md-title">{{gridCtrl.getFormattedPhotoDate(photo.created_at)}}</label>
                 <md-button class="md-icon-button md-primary" target="_blank" download ng-href="{{photo.links.download}}" aria-label="Settings">
                     <i class="material-icons">cloud_download</i>
                 </md-button>
