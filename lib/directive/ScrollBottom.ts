@@ -17,16 +17,19 @@ module UPV
     }
 
     angular
-        .module(AppConstants.APP_NAME).directive(ScrollBottom.NAME, function () {
+        .module(AppConstants.APP_NAME).directive(ScrollBottom.NAME, function ($window, $document) {
         return {
             restrict: 'A',
             link: function (scope, element, attrs) {
-                var raw = element[0];
                 console.log('loading directive');
-                element.on('scroll', function () {
-                    console.log(raw);
-                    if (raw.scrollTop + raw.offsetHeight > raw.scrollHeight) {
+                angular.element($window).bind('scroll', () => {
+
+                    console.log(`pageYOffset: ${$window.pageYOffset }`);
+                    console.log(`docHeight: ${$document[0].body.scrollHeight}`);
+
+                    if ($window.pageYOffset > ($document[0].body.scrollHeight - AppConstants.SCROLL_OFFSET_DIFF)) {
                         scope.$apply(attrs['scroll-bottom']);
+
                     }
                 });
             }

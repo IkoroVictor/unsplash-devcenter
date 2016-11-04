@@ -10,7 +10,7 @@
     <div layout="row" class="filter-div" layout-align="end center">
         <md-input-container  class="select-filter">
             <label>Order</label>
-            <md-select ng-model="gridCtrl.params.order_by" ng-change="gridCtrl.changeOrder()">
+            <md-select ng-model="gridCtrl.params.order_by" ng-change="gridCtrl.refresh()">
                 <md-option value="latest"><em>Latest</em></md-option>
                 <md-option value="popular"><em>Popular</em></md-option>
                 <md-option value="oldest"><em>Oldest</em></md-option>

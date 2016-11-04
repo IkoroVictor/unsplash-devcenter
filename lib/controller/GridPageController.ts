@@ -29,13 +29,13 @@ module UPV
             this._photoService = photoService;
             this.mdDialogService = mdDialogService;
             this.scope =  scope;
+            this.scope.$on(AppConstants.EVENT_SCROLL_BOTTOM, (event) => { this.loadMorePhotos();})
             this.photos = [];
             this.params =  {
                 page: AppConstants.DEFAULT_PAGE_NUMBER,
                 per_page : AppConstants.DEFAULT_PAGE_SIZE,
                 order_by : AppConstants.DEFAULT_PAGE_ORDER,
             };
-
             this.loadPhotos();
         }
 
@@ -57,7 +57,7 @@ module UPV
             this.loadPhotos();
         }
 
-        public changeOrder()  : void
+        public refresh()  : void
         {
             this.photos = [];
             this.loadPhotos();
@@ -73,27 +73,6 @@ module UPV
                     this.photos.push(value);
                 });
             }
-        }
-
-        public showPhoto(event:any, index:number)
-        {
-            this.mdDialogService.show({
-                clickOutsideToClose: true,
-                controller: function($scope, photo, controller)
-                {
-                    $scope.photo = photo;
-                    $scope.controller =  controller;
-                },
-                controllerAs: 'ctrl',
-                focusOnOpen: false,
-                targetEvent: event,
-                locals :
-                {
-                    photo : this.photos[index],
-                    controller: this
-                },
-                templateUrl: URLPaths.VIEW_PHOTO_DIALOG_TEMPLATE_PAGE,
-            }).then();
         }
 
         private handleHttpErrors(error:any) : void
