@@ -20,6 +20,12 @@ module UPV
             this.rootScope = rootScope;
             this.window =  window;
             this.documentService = documentService;
+            this.addScrollBottomEventBroadcaster();
+
+        }
+
+        private addScrollBottomEventBroadcaster() : void
+        {
             var previousPageYOffset:number = 0;
             var previousScrollDiffRatio:number = 0;
             angular.element(this.window).bind('scroll', () => {
